@@ -1,0 +1,44 @@
+<p-table #tt [columns]="columnHeaders" [value]="studentsInformation" 
+            [paginator]="true" [rows]="5" 
+            emptyMessage="No Records to Display">
+    <ng-template pTemplate="caption">
+            List of EmployeeSkills Registered
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                {{col.header}}
+                <p-sortIcon [field]="col.field"></p-sortIcon>
+            </th>
+            <th >
+                    Update
+                </th>
+                <th >
+                       Delete
+                    </th>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-rowData  let-columns="columns">
+        
+     
+        <tr>
+            <td *ngFor="let col of columns">
+                {{rowData[col.field]}}
+            </td>
+            <td>
+                    <a [routerLink]="['/updateEmployeeSkillsInformation', rowData['studentId']]" class="btn btn-info" style="margin-left: 10px">Update </a>
+
+            </td>
+            <td>
+                    <a [routerLink]="['/deleteEmployeeSkillsInformation', rowData['studentId']]" class="btn btn-danger" style="margin-left: 10px">Delete </a>
+
+            </td>
+           
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+        We have {{studentsInformation?.length}} EmployeeSkills registered till date.
+    </ng-template>
+    
+</p-table>
